@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotizacion</title>
+
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+
+
+</head>
+<style>
+    body{
+        background-color: beige;
+    }
+</style>
+<body>
+    <center>
+        <h1>Cotizacion</h1>
+    </center>
+
+    <div class="container">
+        
+        <br><br>
+
+        <div class="centrarDiv">
+            <form action="/cotizacion" method="p">
+                
+
+                <div class="mb-3 row">
+                    <label for="valor" class="col-sm-2 col-form-label">Valor del Automovil: $</label>
+                    <div class="col-sm-10">
+                    <input style="max-width: 300px;" type="number" class="form-control" id="valor" name="valor" required="true"> 
+                    </div>
+                </div>
+                <br><br>
+
+
+                <label for="">Porcentaje de Pago Inicial:</label>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="pinicial" id="pinicial">
+                    <option value="10">10%</option>
+                    <option value="30">30%</option>
+                    <option value="50">50%</option>
+                    <option value="70">70%</option>
+                </select> <br><br>
+
+                <label for="">Plazos</label>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="plazo" id="plazo">
+                    <option value="12">12 meses</option>
+                    <option value="24">24 meses</option>
+                    <option value="36">36 meses</option>
+                    <option value="48">48 meses</option>
+                    <option value="60">60 meses</option>
+                </select> <br> <br>
+
+
+
+                <div class="btn-group">
+                    <input class="btn btn-outline-success" type="submit" value="Calcular">
+                    <input class="btn btn-outline-success" type="reset" value="Limpiar Formulario">
+                  </div>
+
+            </form>
+        </div>
+
+
+        <br><br>
+        <center>
+            <div class="resulados">
+
+                <h2>Informacion de la cotizacion</h2>
+                <hr>
+
+                <%
+                let pagoInicial= 0;
+                let totalfin = 0;
+                let pmensual = 0;
+        
+                if(valor!=null){
+                    pagoInicial = valor * (pinicial/100);
+                    totalfin = valor - pagoInicial;
+                    pmensual= totalfin/plazo;
+                %>
+
+
+
+                <div class="info">
+                  <div class="label colorBlack">Valor del Automóvil:</div>
+                  <div class="value colorBlack"><span class="number">$<%=valor%></span><span class="currency">MXN</span></div>
+              <br>
+                  <div class="label colorBlack">Porcentaje de Pago:</div>
+                  <div class="value colorBlack"><span class="number"><%=pinicial%></span><span class="currency">%</span></div>
+              <br>
+                  <div class="label colorBlack">Plazos:</div>
+                  <div class="value colorBlack"><span class="number"><%=plazo%></span> meses</div>
+              <br>
+                  <div class="label colorBlack">Pago Inicial:</div>
+                  <div class="value colorBlack"><span class="number">$<%=pagoInicial%></span><span class="currency">MXN</span></div>
+              <br>
+                  <div class="label colorBlack">Total a Financiar:</div>
+                  <div class="value colorBlack"><span class="number">$<%=totalfin%></span><span class="currency">MXN</span></div>
+              <br>
+                  <div class="label colorBlack">Pago Mensual:</div>
+                  <div class="value colorBlack"><span class="number">$<%=pmensual%></span><span class="currency">MXN</span></div>
+                </div>
+                <%
+                    }
+                %>
+              </div>   
+            </center>           
+              
+              
+              
+              
+
+    </div>
+</center>
+
+    <br><br><br><br><br>
+    
+    
+</body>
+
+
+
+</html>
